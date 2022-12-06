@@ -12,7 +12,8 @@ namespace Properties
         private string[] _seeds;
         
         // necessario per avere i semi sottoforma di Lista
-        public IList<string> Seeds { 
+        public IList<string> Seeds 
+        { 
             get => this._seeds.ToList();
             set => this._seeds = value.ToArray();
         }
@@ -20,7 +21,8 @@ namespace Properties
         private string[] _names; 
         
         // necessario per avere i nomi sottoforma di Lista
-        public IList<string> Names { 
+        public IList<string> Names 
+        { 
             get => this._names.ToList();
             set => this._names = value.ToArray();
         }
