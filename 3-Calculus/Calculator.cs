@@ -20,13 +20,56 @@ namespace Calculus
     /// HINT: - a property/method to let the user request an operation
     /// HINT: - the usual ToString() method, which is helpful for debugging
     /// HINT: - you may exploit as many _private_ fields/methods/properties as you like
-    ///
-    /// TODO: implement the calculator class in such a way that the Program below works as expected
     class Calculator
     {
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        // TODO fill this class
+        // in order to set char to null
+        private char? _operation = null;
+        public Complex Value { get; set; }
+        private Complex lastValue = null;
+
+        public char? Operation
+        {
+            get => this._operation;
+            set 
+            {
+                if(this.lastValue != null) 
+                {
+                    this.ComputeResult();
+                }
+                this._operation = value;
+                this.lastValue = this.Value;
+                this.Value = null;
+            }
+        }
+
+        public void ComputeResult()
+        {
+            switch (_operation)
+            {
+                case OperationPlus:
+                    this.Value = this.lastValue.Plus(Value);
+                    break;
+                case OperationMinus:
+                    this.Value = this.lastValue.Minus(Value);
+                    break;
+                case null:
+                default:
+                    break;
+            }
+            _operation = null;
+            this.lastValue = null;
+        }
+
+        public void Reset() 
+        {
+            this.lastValue = null;
+            this._operation = null;
+            this.Value = null;
+        }
+
+        public override string ToString() => $"Operation: {_operation}. Value: {Value}. LastValue: {lastValue}.";
     }
 }
