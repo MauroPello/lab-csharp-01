@@ -13,7 +13,8 @@ namespace ComplexAlgebra
         public double Real { get; }
         public double Imaginary { get; }
 
-        public Complex(double real, double imaginary) {
+        public Complex(double real, double imaginary) 
+        {
             this.Real = real;
             this.Imaginary = imaginary;
         }
@@ -23,7 +24,8 @@ namespace ComplexAlgebra
         // per evitare il NaN che ci sarebbe usando Math.Atan(Imaginary / Real)
         public double Phase => Math.Atan2(Imaginary, Real);
 
-        public override string ToString() {
+        public override string ToString() 
+        {
             string real = this.Real == 0 ? "" : this.Real.ToString();
             string sign = this.Imaginary > 0 ? "+ i" : "- i";
             string imaginary = Math.Abs(this.Imaginary).ToString();
@@ -49,7 +51,8 @@ namespace ComplexAlgebra
 
         protected bool Equals(Complex complex) => Real.Equals(complex.Real) && Imaginary.Equals(complex.Imaginary);
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj) 
+        {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
