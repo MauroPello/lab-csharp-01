@@ -9,57 +9,43 @@ namespace Properties
     /// </summary>
     public class DeckFactory
     {
-        private string[] seeds;
-
-        private string[] names;
-
-        // TODO improve
-        public IList<string> GetSeeds()
-        {
-            return this.seeds.ToList();
+        private string[] _seeds;
+        
+        // necessario per avere i semi sottoforma di Lista
+        public IList<string> Seeds { 
+            get => this._seeds.ToList();
+            set => this._seeds = value.ToArray();
         }
 
-        // TODO improve
-        public void SetSeeds(IList<string> seeds)
-        {
-            this.seeds = seeds.ToArray();
+        private string[] _names; 
+        
+        // necessario per avere i nomi sottoforma di Lista
+        public IList<string> Names { 
+            get => this._names.ToList();
+            set => this._names = value.ToArray();
         }
 
-        // TODO improve
-        public IList<string> GetNames()
-        {
-            return this.names.ToList();
-        }
+        public int DeckSize => this._names.Length * this._seeds.Length;
 
-        // TODO improve
-        public void SetNames(IList<string> names)
+        public ISet<Card> Deck
         {
-            this.names = names.ToArray();
-        }
-
-        // TODO improve
-        public int GetDeckSize()
-        {
-            return this.names.Length * this.seeds.Length;
-        }
-
-        /// TODO improve
-        public ISet<Card> GetDeck()
-        {
-            if (this.names == null || this.seeds == null)
+            get 
             {
-                throw new InvalidOperationException();
-            }
+                if (this.Names == null || this.Seeds == null)
+                {
+                    throw new InvalidOperationException();
+                }
 
-            return new HashSet<Card>(Enumerable
-                .Range(0, this.names.Length)
-                .SelectMany(i => Enumerable
-                    .Repeat(i, this.seeds.Length)
-                    .Zip(
-                        Enumerable.Range(0, this.seeds.Length),
-                        (n, s) => Tuple.Create(this.names[n], this.seeds[s], n)))
-                .Select(tuple => new Card(tuple))
-                .ToList());
+                return new HashSet<Card>(Enumerable
+                    .Range(0, this._names.Length)
+                    .SelectMany(i => Enumerable
+                        .Repeat(i, this._seeds.Length)
+                        .Zip(
+                            Enumerable.Range(0, this._seeds.Length),
+                            (n, s) => Tuple.Create(this._names[n], this._seeds[s], n)))
+                    .Select(tuple => new Card(tuple))
+                    .ToList());
+            }
         }
     }
 }

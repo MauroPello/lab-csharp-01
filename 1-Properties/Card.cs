@@ -7,9 +7,9 @@ namespace Properties
     /// </summary>
     public class Card
     {
-        private readonly string seed;
-        private readonly string name;
-        private readonly int ordinal;
+        public string seed { get; }
+        public string name { get; }
+        public int ordinal { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
@@ -32,33 +32,13 @@ namespace Properties
         {
         }
 
-        // TODO improve
-        public string GetSeed()
-        {
-            return this.seed;
-        }
-
-        // TODO improve
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        // TODO improve
-        public int GetOrdinal()
-        {
-            return this.ordinal;
-        }
-
         /// <inheritdoc cref="object.ToString"/>
-        public override string ToString()
-        {
-            // TODO understand string interpolation
-            return $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
-        }
+        public override string ToString() => $"{this.GetType().Name}(Name={this.name}, Seed={this.seed}, Ordinal={this.ordinal})";
 
-        // TODO generate Equals(object obj)
+        public bool Equals(Card card) => string.Equals(seed, card.seed) && string.Equals(name, card.name) && ordinal == card.ordinal;
 
-        // TODO generate GetHashCode()
+        public override bool Equals(object obj) => obj.GetType().Equals(this.GetType()) && Equals(this, obj);
+
+        public override int GetHashCode() => HashCode.Combine(seed, name, ordinal);
     }
 }
