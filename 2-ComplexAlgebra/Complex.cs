@@ -30,17 +30,22 @@ namespace ComplexAlgebra
             string sign = this.Imaginary > 0 ? "+ i" : "- i";
             string imaginary = Math.Abs(this.Imaginary).ToString();
 
-            if(this.Real != 0) {
+            if(this.Real != 0) 
+            {
                 sign = this.Imaginary > 0 ? " + i" : " - i";
-            } else {
+            } else 
+            {
                 sign = this.Imaginary > 0 ? "i" : "-i";
             }
 
-            if(Math.Abs(this.Imaginary) == 1 || this.Imaginary == 0) {
+            if(Math.Abs(this.Imaginary) == 1 || this.Imaginary == 0)
+            {
                 imaginary = "";
-                if(this.Imaginary == 0) {
+                if(this.Imaginary == 0)
+                {
                     sign = "";
-                    if(this.Real == 0) {
+                    if(this.Real == 0)
+                    {
                         real = "0";
                     }
                 }
