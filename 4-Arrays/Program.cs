@@ -19,15 +19,15 @@ namespace Arrays
         /// <seealso cref="Examples.Max"/>
         public static Complex MaxModulus(Complex[] array)
         {
-            if (array.Length == 0) 
+            if (array.Length == 0)
             {
                 return null;
-            } 
+            }
 
             Complex max = array[0];
-            for (int i = 0; i < array.Length; i++) 
+            for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].Modulus > max.Modulus) 
+                if (array[i].Modulus > max.Modulus)
                 {
                     max = array[i];
                 }
@@ -47,7 +47,7 @@ namespace Arrays
         public static Complex[] Clone(Complex[] array)
         {
             Complex[] output = new Complex[array.Length];
-            for (int i = 0; i < array.Length; i++) 
+            for (int i = 0; i < array.Length; i++)
             {
                 output[i] = array[i];
             }
@@ -82,7 +82,7 @@ namespace Arrays
             }
             return output;
         }
-        
+
         /// <summary>
         /// Creates a representation of the provided array of <see cref="Complex"/> as a string.
         /// Items of <paramref name="array"/> are represented via their <see cref="Complex.ToString"/> method.
@@ -96,14 +96,14 @@ namespace Arrays
         public static string ArrayToString(Complex[] array)
         {
             string output = "[";
-            for (int i = 0; i < array.Length; i++) 
+            for (int i = 0; i < array.Length; i++)
             {
                 output += array[i].ToString() + ", ";
             }
             output = output.Substring(0, output.Length - 2);
             return output + "]";
         }
-        
+
         /// <summary>
         /// Test method for the aforementioned array algorithms
         /// </summary>
@@ -114,15 +114,15 @@ namespace Arrays
             Complex[] numbers = new[] {
                 new Complex(0, 0),
                 new Complex(1, 1),
-                new Complex(0, 1), 
+                new Complex(0, 1),
                 new Complex(-2, 2),
                 new Complex(-3, 0),
                 new Complex(-2, -2),
                 new Complex(0, -4),
                 new Complex(1, -1),
                 new Complex(1, 0)
-            }; 
-            
+            };
+
             Complex[] orderedByPhase = new[] {
                 new Complex(-2, -2),
                 new Complex(0, -4),
@@ -134,9 +134,9 @@ namespace Arrays
                 new Complex(-2, 2),
                 new Complex(-3, 0)
             };
-            
+
             var cloned = numbers;
-            
+
             ArraysAreEqual(cloned, numbers);
             ArraysAreEqual(SortByPhase(numbers), orderedByPhase);
             ArraysAreEqual(numbers, cloned);
@@ -172,7 +172,7 @@ namespace Arrays
             }
             Console.WriteLine($"Array {ArrayToString(actual)} is ok");
         }
-        
+
         /// <summary>
         /// Checks whether the <paramref name="actual"/> <see cref="Complex"/> number is equal to the
         /// <paramref name="expected"/> one (via the <see cref="Complex.Equals(object)"/> method).

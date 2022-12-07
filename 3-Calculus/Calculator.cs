@@ -33,9 +33,9 @@ namespace Calculus
         public char? Operation
         {
             get => this._operation;
-            set 
+            set
             {
-                if(this.lastValue != null) 
+                if (this.lastValue != null)
                 {
                     this.ComputeResult();
                 }
@@ -63,7 +63,7 @@ namespace Calculus
             this.lastValue = null;
         }
 
-        public void Reset() 
+        public void Reset()
         {
             this.lastValue = null;
             this._operation = null;

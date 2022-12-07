@@ -13,7 +13,7 @@ namespace ComplexAlgebra
         public double Real { get; }
         public double Imaginary { get; }
 
-        public Complex(double real, double imaginary) 
+        public Complex(double real, double imaginary)
         {
             this.Real = real;
             this.Imaginary = imaginary;
@@ -24,27 +24,28 @@ namespace ComplexAlgebra
         // per evitare il NaN che ci sarebbe usando Math.Atan(Imaginary / Real)
         public double Phase => Math.Atan2(Imaginary, Real);
 
-        public override string ToString() 
+        public override string ToString()
         {
             string real = this.Real == 0 ? "" : this.Real.ToString();
             string sign = this.Imaginary > 0 ? "+ i" : "- i";
             string imaginary = Math.Abs(this.Imaginary).ToString();
 
-            if(this.Real != 0) 
+            if (this.Real != 0)
             {
                 sign = this.Imaginary > 0 ? " + i" : " - i";
-            } else 
+            }
+            else
             {
                 sign = this.Imaginary > 0 ? "i" : "-i";
             }
 
-            if(Math.Abs(this.Imaginary) == 1 || this.Imaginary == 0)
+            if (Math.Abs(this.Imaginary) == 1 || this.Imaginary == 0)
             {
                 imaginary = "";
-                if(this.Imaginary == 0)
+                if (this.Imaginary == 0)
                 {
                     sign = "";
-                    if(this.Real == 0)
+                    if (this.Real == 0)
                     {
                         real = "0";
                     }
@@ -56,20 +57,20 @@ namespace ComplexAlgebra
 
         protected bool Equals(Complex complex) => Real.Equals(complex.Real) && Imaginary.Equals(complex.Imaginary);
 
-        public override bool Equals(object obj) 
+        public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((Complex) obj);
+            return Equals((Complex)obj);
         }
 
         public override int GetHashCode() => HashCode.Combine(Real, Imaginary);
 
         public Complex Complement() => new Complex(Real, -Imaginary);
-        
+
         public Complex Plus(Complex complex) => new Complex(Real + complex.Real, Imaginary + complex.Imaginary);
-        
+
         public Complex Minus(Complex complex) => new Complex(Real - complex.Real, Imaginary - complex.Imaginary);
     }
 }
