@@ -32,8 +32,12 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> Peek<TAny>(this IEnumerable<TAny> sequence, Action<TAny> consumer)
         {
-            ForEach(sequence, consumer);
-            return sequence;
+            foreach (var item in sequence)
+            {
+                consumer(item);
+
+                yield return item;
+            }
         }
 
         /// <summary>
